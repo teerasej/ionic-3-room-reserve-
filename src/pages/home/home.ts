@@ -21,4 +21,8 @@ export class HomePage {
       )
   }
 
+  viewDetail(room){
+    this.navCtrl.push('RoomDetailPage', room);
+  }
+
 }
