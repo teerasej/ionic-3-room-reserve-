@@ -1,3 +1,4 @@
+import { RoomProvider } from './../../providers/room/room';
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
@@ -7,8 +8,17 @@ import { NavController } from 'ionic-angular';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController) {
+  roomArray;
 
+  constructor(public navCtrl: NavController, public roomProvider: RoomProvider) {
+    this.roomProvider.getAllRooms()
+      .subscribe(
+        (data) => { 
+          console.log(data);
+          this.roomArray = data; 
+        }
+        , (error) => { alert(error.message) }
+      )
   }
 
 }
