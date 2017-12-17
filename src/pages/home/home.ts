@@ -13,15 +13,7 @@ export class HomePage {
     public navCtrl: NavController,
     public roomProvider: RoomProvider
   ) {
-    this.roomProvider.getAllRooms().subscribe(
-      data => {
-        console.log(data);
-        this.roomArray = data;
-      },
-      error => {
-        alert(error.message);
-      }
-    );
+    
   }
 
   ionViewWillEnter() {
