@@ -1,28 +1,47 @@
-import { RoomProvider } from './../../providers/room/room';
-import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { RoomProvider } from "./../../providers/room/room";
+import { Component } from "@angular/core";
+import { NavController } from "ionic-angular";
 
 @Component({
-  selector: 'page-home',
-  templateUrl: 'home.html'
+  selector: "page-home",
+  templateUrl: "home.html"
 })
 export class HomePage {
-
   roomArray;
 
-  constructor(public navCtrl: NavController, public roomProvider: RoomProvider) {
-    this.roomProvider.getAllRooms()
-      .subscribe(
-        (data) => { 
-          console.log(data);
-          this.roomArray = data; 
-        }
-        , (error) => { alert(error.message) }
-      )
+  constructor(
+    public navCtrl: NavController,
+    public roomProvider: RoomProvider
+  ) {
+    this.roomProvider.getAllRooms().subscribe(
+      data => {
+        console.log(data);
+        this.roomArray = data;
+      },
+      error => {
+        alert(error.message);
+      }
+    );
   }
 
-  viewDetail(room){
-    this.navCtrl.push('RoomDetailPage', room);
+  ionViewWillEnter() {
+    console.log("ionViewWillEnter HomePage");
+    this.roomProvider.getAllRooms().subscribe(
+      data => {
+        console.log(data);
+        this.roomArray = data;
+      },
+      error => {
+        alert(error.message);
+      }
+    );
   }
 
+  viewDetail(room) {
+    this.navCtrl.push("RoomDetailPage", room);
+  }
+
+  createRoom() {
+    this.navCtrl.push("RoomNewPage");
+  }
 }

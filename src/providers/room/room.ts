@@ -20,4 +20,15 @@ export class RoomProvider {
     return this.http.get(this.baseUrl + '/rooms');
   }
 
+  addNewRoom(name){
+
+    let jsonData = {
+      "roomName": name
+    };
+
+    console.log(jsonData);
+
+    return this.http.post(this.baseUrl + '/rooms/new', jsonData );
+  }
+
 }
